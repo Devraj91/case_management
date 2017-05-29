@@ -1,0 +1,55 @@
+<html>
+<head>
+  <title>Case Management</title>
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script src="app.js"></script>
+  
+  <style> .glyphicon-thumbs-up { cursor:pointer } </style>
+</head>
+<body ng-app="caseMgmt" ng-controller="MainCtrl">
+    <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+      <div class="page-header">
+        <h1>Cases</h1>
+      </div>
+    
+
+<div class="panel panel-default" ng-class="{'panel-warning': case.priority === 5 }" ng-repeat="case in cases| orderBy: '-priority'">
+  <div class="panel-heading" >{{case.summary}} Priority - {{case.priority}} <span ng-click="increasePriority(case)" class="glyphicon glyphicon-chevron-up" data-toggle="tooltip" title="Increase Priority">
+            </span>
+            <span ng-click="decreasePriority(case)" class="glyphicon glyphicon-chevron-down" data-toggle="tooltip" title="Increase Priority">
+            </span></div>  
+    <div class="panel-body">{{case.desc}}</div>
+  </div>
+
+
+
+
+    <!--<div ng-repeat="case in cases| orderBy: '-priority'">
+        <span ng-click="increasePriority(case)" class="glyphicon glyphicon-chevron-up">
+            </span>{{case.priority}} <span style="font-size:20px; margin-left:10px;">  {{case.summary}} {{case.desc}} </span>
+    </div>-->
+
+
+
+    <form ng-submit="addCase()" style="margin-top:30px;">
+        <h3>Add a new case</h3>
+        <div class="form-group">
+          <input type="text" class="form-control" ng-model="summary" placeholder="Enter Summary"></input>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" ng-model="desc" rows="5" placeholder="Enter Description"></textarea>
+        </div>
+        <div class="form-group">
+          Select Priority  <select ng-model="priority" ng-options="x for x in priorities" class="btn btn-default dropdown-toggle"></select>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+    </div>
+  </div>
+</body>
+</html>
