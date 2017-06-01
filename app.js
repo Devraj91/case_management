@@ -25,5 +25,9 @@ $scope.cases = [];
     $scope.decreasePriority = function(post) {        
          post.priority -= 1;        
     };
+
+    $scope.myFunc = function() {
+          $scope.showMe = !$scope.showMe;
+    }
     
 });
